@@ -16,9 +16,9 @@ Tomcat7
   Eintrag in <Tomcat>/conf/context.xml:
   
     <Resource
-   		name="jdbc/enmt" 
+   		name="jdbc/umgr" 
    		auth="Container" 
-   		description="Abado Energiemanager Database" 
+   		description="Usermanager Database" 
    		driverClassName="com.mysql.jdbc.Driver" 
 		initialSize="2" 
 		maxActive="10" 
@@ -26,9 +26,9 @@ Tomcat7
 		password="tomcat" 
 		type="javax.sql.DataSource" 
 		factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
-		url="jdbc:mysql://localhost:3306/enmt" 
+		url="jdbc:mysql://localhost:3306/umgr" 
 		validationQuery="select 1" />	        
-   (Daraus ergibt sich jndi-name="java:comp/env/jdbc/enmt")
+   (Daraus ergibt sich jndi-name="java:comp/env/jdbc/umgr")
    
    Für production müssen die Werte genauer angepasst werden! 
    Siehe: http://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html
@@ -40,20 +40,20 @@ Tomcat7
 MySQL
    1) Installieren
    2) Benutzer anlegen: name='tomcat', password='tomcat'
-   3) Database enmt anlegen und dem tomcat user Schreib/Lese Rechte geben:
+   3) Database umgr anlegen und dem tomcat user Schreib/Lese Rechte geben:
       Als Benutzer mit allen DB-Rechten (default: name='root', pwd='') eine mysql-konsole öffnen und folgende Statements ausführen:
-        create database enmt CHARACTER SET utf8 COLLATE utf8_general_ci;
+        create database umgr CHARACTER SET utf8 COLLATE utf8_general_ci;
         GRANT ALL PRIVILEGES ON *.* TO 'tomcat'@'localhost' IDENTIFIED BY 'tomcat' WITH GRANT OPTION;
    
   
 Tabellen anlegen
-	mysql -u tomcat -p -h localhost enmt < generated-schema.sql 
-	mysql -u tomcat -p -h localhost enmt < spring-security.dll
+	mysql -u tomcat -p -h localhost umgr < generated-schema.sql 
+	mysql -u tomcat -p -h localhost umgr < spring-security.dll
 
 Tomcat starten
 	
 Login mit Testuser
-	http://localhost:8080/enmt-vaadin
+	http://localhost:8080/umgr-vaadin
 	User: jmey
 	Passwd: dev;2011
 	
@@ -80,7 +80,7 @@ in der applicationContext-security.xml ist somit die Zugriffsrechte konfiguriert
 LOGIN
   * login-page. Diese URL wird aufgerufen, wenn noch keine gültige Session existiert.
     Hier ist die 'login.jsp' definiert. Diese JSP benutzt die Spring-Parameter
-  * Authenticatin Manager. Hierüber wird der Login-Prozess gesteuert. Ihm ist der enmt-eigene
+  * Authenticatin Manager. Hierüber wird der Login-Prozess gesteuert. Ihm ist der umgr-eigene
     UserService mittels <user-service-ref> zugeordnet, der den Benutzer anhand seines Loginnamens aus der DB holt. 
     (Alternative:   <jdbc-user-service> benutzen und konfigurieren; einfacher, aber beschränkter)
 ZUGRIFFSKONTROLLE 
