@@ -1,0 +1,25 @@
+
+syntax: regexp
+^umgr-backend/target$
+syntax: regexp
+^tomcat$
+syntax: regexp
+^\.settings$
+syntax: regexp
+\.classpath$
+syntax: regexp
+\.classpath$
+syntax: regexp
+\.project$
+syntax: regexp
+^umgr-backend/\.settings$
+syntax: regexp
+^umgr-dataimporter/\.settings$
+syntax: regexp
+^umgr-dataimporter/target$
+syntax: regexp
+^umgr-vaadin/\.externalToolBuilders$
+syntax: regexp
+^umgr-vaadin/\.settings$
+syntax: regexp
+^umgr-vaadin/target$
