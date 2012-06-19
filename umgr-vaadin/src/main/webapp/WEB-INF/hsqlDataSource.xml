@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:jee="http://www.springframework.org/schema/jee"
+  xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.1.xsd"> 
+ <!--
+        ***************************************************************
+        DataSource for Development
+        
+        values of URL:
+        a) jdbc:hsqldb:hsql://localhost
+        b) jdbc:hsqldb:mem:testdb
+         
+        for a): start server     (java -cp ~/.m2/repository/org/hsqldb/com.springsource.org.hsqldb/1.8.0.9/com.springsource.org.hsqldb-1.8.0.9.jar org.hsqldb.Server __database.0 file:mydb __dbname.0 xdb)
+                start DB-Browser (java -cp ~/.m2/repository/org/hsqldb/com.springsource.org.hsqldb/1.8.0.9/com.springsource.org.hsqldb-1.8.0.9.jar org.hsqldb.util.DatabaseManagerSwing)
+        for b): nothing todo
+        NOTE for a) Replace __ with minusminus. This can't be done here because minusminus is not allowed in xml-comments!)       
+        
+        ***************************************************************
+    -->
+
+  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+    destroy-method="close">
+    <property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+    <property name="username" value="sa"></property>
+    <property name="password" value=""></property>
+    <property name="url" value="jdbc:hsqldb:hsql://localhost"></property>
+  </bean>
+  
+</beans>
